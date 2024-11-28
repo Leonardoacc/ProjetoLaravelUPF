@@ -16,7 +16,7 @@ class CreateLocacoesTable extends Migration
             $table->date('data_devolucao')->nullable();
             $table->timestamps();
 
-            // Relacionamento com as tabelas clientes e filmes
+            
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->foreign('filme_id')->references('id')->on('filmes')->onDelete('cascade');
         });

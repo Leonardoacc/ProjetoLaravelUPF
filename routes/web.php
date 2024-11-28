@@ -29,11 +29,14 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('locacoes', LocacaoController::class);
     Route::resource('pagamentos', PagamentoController::class);
     Route::get('filmes/{id}', [FilmeController::class, 'show'])->name('filmes.show');
-    Route::get('/locacoes/{locacao}/edit', [LocacaoController::class, 'edit'])->name('locacoes.edit');
     Route::put('/locacoes/{locacao}', [LocacaoController::class, 'update'])->name('locacoes.update');
+    Route::get('/locacoes/{locacao}', [LocacaoController::class, 'show'])->name('locacoes.show');
+    Route::get('/locacoes/{locacao}/edit', [LocacaoController::class, 'edit'])->name('locacoes.edit');
+    Route::delete('/locacoes/{locacao}', [LocacaoController::class, 'destroy'])->name('locacoes.destroy');
+
 
     
 });
 
-// Rotas de autenticação (login, registro, etc.)
+
 require __DIR__.'/auth.php';

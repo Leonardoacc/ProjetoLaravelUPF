@@ -35,14 +35,15 @@ class LocacaoController extends Controller
         return redirect()->route('locacoes.index')->with('success', 'Locação cadastrada com sucesso.');
     }
 
-    public function show(Locacao $locacao)
+    public function show($locacao)
     {
+        $locacao = Locacao::findOrFail($locacao);
         return view('locacoes.show', compact('locacao'));
     }
 
     public function edit($locacao)
     {
-        $locacao = Locacao::findOrFail($locacao); // Use o parâmetro locacao para encontrar o registro
+        $locacao = Locacao::findOrFail($locacao); 
         $clientes = Cliente::all();
         $filmes = Filme::all();
         return view('locacoes.edit', compact('locacao', 'clientes', 'filmes'));
@@ -50,7 +51,7 @@ class LocacaoController extends Controller
 
     public function update(Request $request, $locacao)
     {
-        $locacao = Locacao::findOrFail($locacao); // Use o parâmetro locacao para encontrar o registro
+        $locacao = Locacao::findOrFail($locacao); 
         $locacao->update($request->all());
         return redirect()->route('locacoes.index')->with('success', 'Locação atualizada com sucesso.');
     }

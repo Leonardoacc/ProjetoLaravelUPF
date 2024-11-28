@@ -14,13 +14,13 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id(); // Chave primária
-            $table->string('name'); // Nome do usuário
-            $table->string('email')->unique(); // E-mail único
-            $table->timestamp('email_verified_at')->nullable(); // Verificação de e-mail
-            $table->string('password'); // Senha
-            $table->rememberToken(); // Token de autenticação "lembrar-me"
-            $table->timestamps(); // Campos created_at e updated_at
+            $table->id(); 
+            $table->string('name'); 
+            $table->string('email')->unique(); 
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken(); 
+            $table->timestamps(); 
         });
     }
 
@@ -31,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users'); // Remove a tabela se necessário
+        Schema::dropIfExists('users'); 
     }
 }

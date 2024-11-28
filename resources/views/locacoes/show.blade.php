@@ -12,4 +12,5 @@
 <p><strong>Data de Devolução:</strong> {{ $locacao->data_devolucao }}</p>
 
 <a href="{{ route('locacoes.index') }}" class="btn btn-secondary">Voltar</a>
+
 @endsection

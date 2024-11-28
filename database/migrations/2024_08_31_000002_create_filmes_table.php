@@ -16,7 +16,7 @@ class CreateFilmesTable extends Migration
             $table->integer('ano_lancamento');
             $table->timestamps();
 
-            // Relacionamento com a tabela categorias
+           
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }

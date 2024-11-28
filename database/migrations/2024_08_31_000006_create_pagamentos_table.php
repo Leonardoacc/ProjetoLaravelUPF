@@ -16,7 +16,6 @@ class CreatePagamentosTable extends Migration
             $table->date('data_pagamento');
             $table->timestamps();
 
-            // Relacionamento com a tabela locacoes
             $table->foreign('locacao_id')->references('id')->on('locacoes')->onDelete('cascade');
         });
     }
