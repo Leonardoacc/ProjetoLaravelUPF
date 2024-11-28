@@ -13,6 +13,11 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
+                            <a href="{{ route('categorias.index') }}" class="btn btn-primary btn-block">
+                                <i class="fas fa-users"></i> Gerenciar Categorias
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-3">
                             <a href="{{ route('clientes.index') }}" class="btn btn-primary btn-block">
                                 <i class="fas fa-users"></i> Gerenciar Clientes
                             </a>

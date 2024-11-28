@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\FilmeController;
@@ -20,13 +21,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', function () {
         return view('home'); // Certifique-se de que 'home.blade.php' existe
     })->name('home');
-
+    
+    Route::resource('categorias', CategoriaController::class);
     Route::resource('clientes', ClienteController::class);
     Route::resource('funcionarios', FuncionarioController::class);
-    Route::resource('categorias', CategoriaController::class);
     Route::resource('filmes', FilmeController::class);
     Route::resource('locacoes', LocacaoController::class);
     Route::resource('pagamentos', PagamentoController::class);
+    Route::get('filmes/{id}', [FilmeController::class, 'show'])->name('filmes.show');
 });
 
 // Rotas de autenticação (login, registro, etc.)

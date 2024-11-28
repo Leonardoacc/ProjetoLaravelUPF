@@ -10,18 +10,19 @@ class FilmeController extends Controller
 {
     public function index()
     {
-        $filmes = Filme::with('categoria')->get(); // Inclui categoria
+        $filmes = Filme::with('categoria')->get();
         return view('filmes.index', compact('filmes'));
     }
 
-    public function show(Filme $filme)
+    public function show($id)
     {
-        return view('filmes.show', compact('filme'));
+        $filme = Filme::findOrFail($id); 
+        return view('filmes.show', compact('filme')); 
     }
 
     public function create()
     {
-        $categorias = Categoria::all(); // Carrega categorias
+        $categorias = Categoria::all();
         return view('filmes.create', compact('categorias'));
     }
 
@@ -29,9 +30,9 @@ class FilmeController extends Controller
     {
         $request->validate([
             'titulo' => 'required|string|max:255',
-            'genero' => 'required|string|max:100',
-            'ano_lancamento' => 'required|integer|min:1888|max:' . date('YYYY'),
-            'categoria_id' => 'required|exists:categorias,id', // Chave estrangeira
+            'descricao' => 'nullable|string|max:1000',
+            'categoria_id' => 'required|exists:categorias,id',
+            'ano_lancamento' => 'required|integer|min:1888|max:' . date('Y'),
         ]);
 
         Filme::create($request->all());
@@ -41,7 +42,7 @@ class FilmeController extends Controller
 
     public function edit(Filme $filme)
     {
-        $categorias = Categoria::all(); // Carrega categorias
+        $categorias = Categoria::all();
         return view('filmes.edit', compact('filme', 'categorias'));
     }
 
@@ -49,9 +50,9 @@ class FilmeController extends Controller
     {
         $request->validate([
             'titulo' => 'required|string|max:255',
-            'genero' => 'required|string|max:100',
-            'ano_lancamento' => 'required|integer|min:1888|max:' . date('YYYY'),
-            'categoria_id' => 'required|exists:categorias,id', // Chave estrangeira
+            'descricao' => 'nullable|string|max:1000',
+            'categoria_id' => 'required|exists:categorias,id',
+            'ano_lancamento' => 'required|integer|min:1888|max:' . date('Y'),
         ]);
 
         $filme->update($request->all());
