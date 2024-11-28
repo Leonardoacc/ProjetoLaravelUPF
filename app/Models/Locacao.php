@@ -9,7 +9,7 @@ class Locacao extends Model
 {
     use HasFactory;
 
-    protected $table = 'locacoes'; // Define explicitamente o nome da tabela
+    protected $table = 'locacoes';
 
     protected $fillable = [
         'cliente_id',

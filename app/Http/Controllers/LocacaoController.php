@@ -40,22 +40,17 @@ class LocacaoController extends Controller
         return view('locacoes.show', compact('locacao'));
     }
 
-    public function edit(Locacao $locacao)
+    public function edit($locacao)
     {
+        $locacao = Locacao::findOrFail($locacao); // Use o parâmetro locacao para encontrar o registro
         $clientes = Cliente::all();
         $filmes = Filme::all();
         return view('locacoes.edit', compact('locacao', 'clientes', 'filmes'));
     }
 
-    public function update(Request $request, Locacao $locacao)
+    public function update(Request $request, $locacao)
     {
-        $request->validate([
-            'cliente_id' => 'required|exists:clientes,id',
-            'filme_id' => 'required|exists:filmes,id',
-            'data_locacao' => 'required|date',
-            'data_devolucao' => 'required|date|after_or_equal:data_locacao',
-        ]);
-
+        $locacao = Locacao::findOrFail($locacao); // Use o parâmetro locacao para encontrar o registro
         $locacao->update($request->all());
         return redirect()->route('locacoes.index')->with('success', 'Locação atualizada com sucesso.');
     }
